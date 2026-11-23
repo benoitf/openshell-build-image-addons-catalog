@@ -1,0 +1,82 @@
+#
+# Copyright (C) 2026 Red Hat, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+name: update-addons
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-addons
+  cancel-in-progress: false
+
+jobs:
+  update:
+    name: Update addons catalog
+    runs-on: ubuntu-26.04
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install skopeo
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y skopeo
+
+      - name: Test version extraction
+        run: .github/scripts/test-extract-version.sh
+
+      - name: Update static/api/addons.json
+        run: .github/scripts/update-addons.sh
+
+      - name: Write pull request body
+        id: body
+        run: |
+          {
+            echo 'body<<EOF'
+            echo 'Automated update of `static/api/addons.json` from'
+            echo '[openshell-build-image-addons](https://github.com/openkaiden/openshell-build-image-addons)'
+            echo 'and the images published on ghcr.io.'
+            todo=$(jq -r '.addons[] | select(.description == "TODO") | "- `\(.name)` (\(.category))"' static/api/addons.json)
+            if [[ -n "$todo" ]]; then
+              echo
+              echo 'New addons need a `displayName`, `description` and `icon` before merging:'
+              echo
+              echo "$todo"
+            fi
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@3ffccacd46053766916f087ce41d627c0b8cf2d1 # v8.1.3
+        with:
+          # PRs opened with the default GITHUB_TOKEN do not trigger pr-check;
+          # set CATALOG_PR_TOKEN to a PAT or GitHub App token so they do.
+          token: ${{ secrets.CATALOG_PR_TOKEN || github.token }}
+          branch: update-addons
+          delete-branch: true
+          signoff: true
+          add-paths: static/api/addons.json
+          commit-message: 'chore: update addons catalog'
+          title: 'chore: update addons catalog'
+          body: ${{ steps.body.outputs.body }}
