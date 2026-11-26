@@ -6,9 +6,9 @@
       "category": "agents",
       "description": "Claude Code CLI with the Claude Agent ACP adapter.",
       "icon": "icons/claude.svg",
-      "version": "2.1.286",
-      "commit": "a5cabd14808ec154e5e45166496cd3ec19c516cd",
-      "image": "ghcr.io/openkaiden/openshell-build-image-addons-claude@sha256:eb2d6a6776abe277e58deb38ecd24c48b601ce11bd0f4a1569b9f17fb394bb9c",
+      "version": "${DEFAULT_CLAUDE_CODE_VERSION",
+      "commit": "7c6935de39573821fb03f7e572e278253740b29b",
+      "image": "ghcr.io/openkaiden/openshell-build-image-addons-claude@sha256:96affccf0bb8bd36b1d5e9138b69c6ac07d55ab510aaa01235cb00b927323ee3",
       "libc": [
         "glibc",
         "musl"
@@ -20,9 +20,9 @@
       "category": "agents",
       "description": "OpenAI Codex CLI with the Codex ACP adapter.",
       "icon": null,
-      "version": "0.159.3",
-      "commit": "a5cabd14808ec154e5e45166496cd3ec19c516cd",
-      "image": "ghcr.io/openkaiden/openshell-build-image-addons-codex@sha256:0112e640b61bcb9ae726a7b5578515d16b8a04f60c94799e0676a7630a96ddc7",
+      "version": "${DEFAULT_CODEX_VERSION",
+      "commit": "7c6935de39573821fb03f7e572e278253740b29b",
+      "image": "ghcr.io/openkaiden/openshell-build-image-addons-codex@sha256:a2023e4d421b6b70f41a918e44cde3c3725bbfe338b96562b09007b439530998",
       "libc": [
         "glibc",
         "musl"
@@ -34,9 +34,9 @@
       "category": "agents",
       "description": "OpenCode AI coding agent CLI.",
       "icon": "icons/opencode.svg",
-      "version": "2.2.5",
-      "commit": "a5cabd14808ec154e5e45166496cd3ec19c516cd",
-      "image": "ghcr.io/openkaiden/openshell-build-image-addons-opencode@sha256:373c0a5ca2a1a520d5e423bc82b950703a3da8e70078ce65598b30b243af7eb5",
+      "version": "${DEFAULT_OPENCODE_VERSION",
+      "commit": "7c6935de39573821fb03f7e572e278253740b29b",
+      "image": "ghcr.io/openkaiden/openshell-build-image-addons-opencode@sha256:9a47c39bbf2d3c76cca37774cf9110606a15e2721d43c23a7763ee4b624dfae4",
       "libc": [
         "glibc",
         "musl"
@@ -48,9 +48,9 @@
       "category": "devtools",
       "description": "Statically linked Git with HTTPS support and a bundled CA certificate bundle; works on glibc and musl bases.",
       "icon": "icons/git.svg",
-      "version": "2.56.1",
-      "commit": "a5cabd14808ec154e5e45166496cd3ec19c516cd",
-      "image": "ghcr.io/openkaiden/openshell-build-image-addons-git@sha256:efa2924685b0108e9e6d3a0b88172c0243dded4602491a9343919f4855dbeccb",
+      "version": "${DEFAULT_GIT_VERSION",
+      "commit": "7c6935de39573821fb03f7e572e278253740b29b",
+      "image": "ghcr.io/openkaiden/openshell-build-image-addons-git@sha256:9a43ea7c2f43e7a9612b6bfd9a141635a40d4421f9c30c32d25594e1f18f3207",
       "libc": []
     },
     {
@@ -59,9 +59,9 @@
       "category": "devtools",
       "description": "Statically linked GitHub CLI (gh).",
       "icon": "icons/github-cli.svg",
-      "version": "2.103.3",
-      "commit": "a5cabd14808ec154e5e45166496cd3ec19c516cd",
-      "image": "ghcr.io/openkaiden/openshell-build-image-addons-github-cli@sha256:b00e623502df794a1cbbcf0534124135947714ca0e06f3bed85ce9e90b582125",
+      "version": "${DEFAULT_GH_VERSION",
+      "commit": "7c6935de39573821fb03f7e572e278253740b29b",
+      "image": "ghcr.io/openkaiden/openshell-build-image-addons-github-cli@sha256:e483be6d8914e467730f8afd39f0d2b6a63c11d3dcf4ad867303ee3066b1c953",
       "libc": []
     },
     {
@@ -70,9 +70,9 @@
       "category": "devtools",
       "description": "pnpm package manager native binary, with a pnpx launcher.",
       "icon": "icons/pnpm.svg",
-      "version": "12.21.0",
-      "commit": "a5cabd14808ec154e5e45166496cd3ec19c516cd",
-      "image": "ghcr.io/openkaiden/openshell-build-image-addons-pnpm@sha256:1f6e4c5f26e382f0e76656e8d33d2d0f27c8fa2bc75281fd34cc162129555674",
+      "version": "${DEFAULT_PNPM_VERSION",
+      "commit": "7c6935de39573821fb03f7e572e278253740b29b",
+      "image": "ghcr.io/openkaiden/openshell-build-image-addons-pnpm@sha256:e09e7ae43b724ce3866ac8dcb97d4f388678241d0ff9ab6810d6c6d3e41faf4a",
       "libc": [
         "glibc",
         "musl"
@@ -85,8 +85,8 @@
       "description": "Node.js 24 runtime with npm, npx, Corepack and headers for native modules.",
       "icon": "icons/node-24.svg",
       "version": "24.22.3",
-      "commit": "a5cabd14808ec154e5e45166496cd3ec19c516cd",
-      "image": "ghcr.io/openkaiden/openshell-build-image-addons-node-24@sha256:e81907d619afc61ce88ab41b7828de754521b2ede7e13b33504889bed8447ead",
+      "commit": "7c6935de39573821fb03f7e572e278253740b29b",
+      "image": "ghcr.io/openkaiden/openshell-build-image-addons-node-24@sha256:4c29d7576ffbf3359e482da795a7ff9574cc1510c46e6a16b9905783ba68a0a3",
       "libc": [
         "glibc",
         "musl"
